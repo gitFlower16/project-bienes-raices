@@ -1,0 +1,13 @@
+extends ../layouts/index
+block  contenido
+    div(style="padding-top: 10px; padding-bottom: 10px;")
+        h1(style="font-size: 1.5rem; margin-top: 2.5rem; margin-bottom: 2.5rem; font-weight: bold; text-align: center;") Bienes
+            span(style="font-weight:normal") Raices
+        h2.text-center.text-2xl.font-extrabold(style="font-weight: bold;")=pagina
+
+        
+    div(class="bg-white shadow py-8 px-4 rounded-lg max-w-md mx-auto")
+        p(class = error ? 'bg-red-500' : 'bg-green-500').py-2.px-5.rounded-lg.w-full.font-bold.text-center.text-white.uppercase=mensaje   
+
+        if !error
+           a.text-gray-500.text-xs(href="/auth/login") Ya puedes iniciar sesión

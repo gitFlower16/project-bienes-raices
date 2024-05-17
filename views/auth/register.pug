@@ -1,0 +1,41 @@
+extends ../layouts/index
+block  contenido
+    div(style="padding-top: 10px; padding-bottom: 10px;")
+        h1(style="font-size: 1.5rem; margin-top: 2.5rem; margin-bottom: 2.5rem; font-weight: bold; text-align: center;") Bienes
+            span(style="font-weight:normal") Raices
+        h2.text-center.text-2xl.font-extrabold(style="font-weight: bold;")=pagina
+
+        if errores
+            div(class="max-w-md mx-auto my-10")
+                each error in errores
+                    p.bg-red-600.text-white.uppercase.text-xs.text-center.p-2.mb-1.font-bold=error.msg
+
+        div(style="margin-top:20px")
+            div(style="background-color:white; padding-top:20px; padding-bottom: 4rem; padding-left: 4rem; padding-right: 4rem; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); margin: 0 auto; max-width: 540px;")
+                form.space-y-5(method="POST" action="/auth/register")
+                    input(type="hidden" name="_csrf" value=csrfToken)
+                    div
+                        label.block.text-sm.uppercase.text-gray-500.mb-3.font-bold(for = "nombre") Tu nombre
+                        input#nombre.w-full.px-3.py-2.border.border-gray-400(placeholder="Tu nombre"
+                        type = "text" name="nombre" value= usuario ? usuario.nombre: '')
+
+                    div
+                        label.block.text-sm.uppercase.text-gray-500.mb-3.font-bold(for = "email") Email de registro
+                        input#email.w-full.px-3.py-2.border.border-gray-400(placeholder="Tu email"
+                        type = "email" name="email" value= usuario ? usuario.email: '')
+                    div
+                        label.block.text-sm.uppercase.text-gray-500.mb-3.font-bold(for = "password") Contraseña
+                        input#password.w-full.px-3.py-2.border.border-gray-400(placeholder="Tu contraseña"
+                        type = "password" name="password") 
+
+                    div
+                        label.block.text-sm.uppercase.text-gray-500.mb-3.font-bold(for = "repetir_password") Repetir contraseña
+                        input#repetir_password.w-full.px-3.py-2.border.border-gray-400(placeholder="Repite tu contraseña"
+                        type = "password" name="repetir_password")
+
+                    div.flex.items-center.justify-between
+                        a.text-gray-500.text-xs(href="/auth/login") ¿Ya tienes cuenta? Inicia sesión
+                        a.text-gray-500.text-xs(href="/auth/olvide-password") ¿Olvidaste tu contraseña?     
+
+                    input(class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 cursor-pointer" type="submit" value="Crear cuenta")               
+                            
